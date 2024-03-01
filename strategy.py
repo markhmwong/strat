@@ -11,6 +11,19 @@ class ApiUtil():
     def getApi():
         pass
 
+    def deleteApi():
+        pass
+
+    def stopApi():
+        pass
+
+class ArtifactoryUtil():
+
+    def update():
+        pass
+
+    def 
+
 #create abstract base class. All apis should have a binding contract to these methods
 class ApiDeploymentImplementation(ABC):
 
@@ -92,9 +105,10 @@ class Inbound(ApiDeploymentImplementation):
 
 class Outbound(ApiDeploymentImplementation):
 
-    def __init__(self, apiUtil: ApiUtil) -> None:
+    def __init__(self, apiUtil: ApiUtil, artifactory: ArtifactoryUtil) -> None:
         print("This is outbound")
         self.apiUtil = apiUtil
+        self.artifactoryUtil = artifactoryUtil
 
     def run(self):
         print("running outbound")
@@ -105,7 +119,9 @@ class Outbound(ApiDeploymentImplementation):
     
     
     def delete():
-        pass
+        apiUtil.getApi()
+        apiUtil.stopApi()
+        apiUtil.deleteApi()
 
     
     def rollback():
@@ -125,6 +141,12 @@ class ApiStrategy():
     def deploy(self):
         self.apiType.run()
 
+    def removeApi(self):
+        self.apiType.delete()
+
+    def publishApi(self):
+        self.apiType
+
 """
 Main stuff
 """
@@ -134,7 +156,7 @@ if __name__ == "__main__":
     if apiType == "outbound":
         print("outbound")
 
-        outboundStrat = ApiStrategy(Outbound(ApiUtil()))
+        outboundStrat = ApiStrategy(Outbound(ApiUtil(), ArtifactoryUtil()))
         outboundStrat.deploy()
         inboundStrat = ApiStrategy(Inbound(ApiUtil()))
         inboundStrat.deploy()
